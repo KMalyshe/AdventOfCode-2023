@@ -21,6 +21,5 @@ for i in parsedInput:
         if (element.isnumeric()):
             temp.append(int(element))
     totalsum += int(str(temp[0]) + str(temp[-1]))
-    print(i)
 
 print(totalsum)
