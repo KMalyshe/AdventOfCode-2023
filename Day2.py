@@ -6,24 +6,18 @@ total = 0
 
 for index, game in enumerate(parsedInput, 1):
     game = game.replace("Game " + str(index) + ": ", "")
-    # PART ONE----------------------------------
-    # conc = ""
-    # valid = True
-    # for element in range(len(game)):
+    conc = ""
+    #valid = True
+    #d = {"r": 12, "g": 13, "b": 14}
+    #for element in range(len(game)):
     #    if game[element].isnumeric():
     #        conc += str(game[element])
-    #        if (int(conc) > 12) and (game[element+2] == "r"):
-    #            valid = False
-    #        if (int(conc) > 13) and (game[element+2] == "g"):
-    #            valid = False
-    #        if (int(conc) > 14) and (game[element+2] == "b"):
-    #            valid = False
+    #        if (int(conc) > 9) and (int(conc) > d.get(game[element+2])): valid = False
     #    else:
     #        conc = ""
-    # if valid:
+    #if valid:
     #    total += index
-    # -------------------------------------------
-    conc = ""
+
     d = {"red": 0, "green": 0, "blue": 0}
 
     for element in range(len(game)):
