@@ -16,7 +16,7 @@ for index, game in enumerate(parsedInput, 1):
     #    else:
     #        conc = ""
     #if valid:
-    #    total += index
+    #    p1total += x
 
     d = {"red": 0, "green": 0, "blue": 0}
 
