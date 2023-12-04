@@ -20,6 +20,7 @@ for i in range(len(left)):
     for index, number in enumerate(left[i]):
         if number == "":
             del left[i][index]
+    left[i] = set(left[i])
 
 for i in range(len(right)):
     right[i] = right[i].split(" ")
@@ -32,15 +33,13 @@ for i in range(len(right)):
 for i in range(len(right)):
     winnings = 0
     tmp = cardsamount[i]
-    while tmp >= 1:
-        for number in right[i]:
-            if number in left[i]:
-                amountwins += 1
-        for j in range(amountwins):
-            if (i+1+j) < len(right):
-                cardsamount[i+1+j] += 1
-        amountwins = 0
-        tmp -= 1
+    for number in right[i]:
+        if number in left[i]:
+            amountwins += 1
+    for j in range(amountwins):
+        if (i+1+j) < len(right):
+            cardsamount[i+1+j] += tmp
+    amountwins = 0
 
 
 for i in cardsamount:
