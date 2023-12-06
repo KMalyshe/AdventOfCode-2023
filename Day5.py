@@ -53,5 +53,18 @@ for seed in seeds:
                                                                       getresult(seedsoilmap, int(seed))))))))
     locations.append(loc)
 
+tuples = []
+skipone = False
+for i, seed in enumerate(seeds):
+    if skipone:
+        skipone = False
+        continue
+    tuples.append([int(seeds[i]), int(seeds[i]) + int(seeds[i+1]) - 1])
+    skipone = True
+
+
+
+
+
 print(min(locations))
 
