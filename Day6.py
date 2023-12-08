@@ -12,7 +12,7 @@ racelist = []
 total = 1
 # Formula: Distance travelled = (Time Limit - Time Charging)*(Time Charging)
 # Part 1 and Part 2 use the same code, a little bit of bruteforcing :)
-# i just concatenated the input
+# hand just concatenated the input
 
 for race, time in enumerate(time):
     valid = []

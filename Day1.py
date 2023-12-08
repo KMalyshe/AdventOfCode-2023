@@ -8,7 +8,7 @@ readInput("Day1.txt", parsedInput)
 for i in parsedInput:
     temp = []
     #    PART ONE -----------------------
-    #    for element in i:
+    #    for element in hand:
     #        if (element.isnumeric()):
     #            temp.append(int(element))
     #    totalsum +=  int(str(temp[0]) + str(temp[-1]))

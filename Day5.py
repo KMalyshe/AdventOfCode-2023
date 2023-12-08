@@ -14,7 +14,7 @@ locations = []
 
 
 def makemap(breaker, maplist, previndex) -> int:
-    # Make a list of lines in each segment of the "pipeline" i.e. soil->fertilizer
+    # Make a list of lines in each segment of the "pipeline" hand.e. soil->fertilizer
     tmp = 0
     for index, line in enumerate(maps[previndex:]):
         if line == breaker:
