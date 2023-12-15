@@ -4,6 +4,10 @@ using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using System.Transactions;
 using System.Xml.Schema;
+class Day8 {
+
+    public static void solve8()
+    {
 var pinput = File.ReadAllLines(@"C:\AoCFiles\Day8.txt");
 var maps = new List<string>(pinput);
 List<string> left = new List<string>();
@@ -48,7 +52,7 @@ while (curr != "ZZZ") {
 }
 */
 // Part 1 concludes here, Part 2 begins
-List<string> curr = new List<string>();
+List<string> curr = new();
 foreach (var key in map.Keys) {
     if (key.Substring(2, 1) == "A") {
         curr.Add(key);
@@ -94,5 +98,7 @@ static long gcd(long x, long y) {
         if (x == y) return x;
         if (x > y) x = x-y;
         else if (y > x) y = y-x;
+    }
+}
     }
 }
