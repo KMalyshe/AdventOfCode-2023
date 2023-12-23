@@ -68,7 +68,7 @@ class Day10 {
             {
                 return (0, -1, 3).ToTuple();
             }
-            return (0, 1, 4).ToTuple();
+            else return (0, 1, 4).ToTuple();
         }
         
     }
