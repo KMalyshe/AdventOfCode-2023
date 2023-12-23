@@ -47,7 +47,7 @@ class Day10 {
             Console.WriteLine("Currently at: " + curr[1] + ", " + curr[0]);
             curr = getNext(curr, matrix);
         }
-        Console.WriteLine(stepcounter);
+        Console.WriteLine(stepcounter / 2);
         // Only checking three directions as one of them must necessarily match
         // curr[2]: 1=coming from below, 2=coming from top, 3=coming from right, 4=coming from left
 
