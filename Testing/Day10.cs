@@ -47,6 +47,7 @@ class Day10 {
         {
             stepcounter++;
             var mod1 = curr[0]+getNext(curr,matrix).Item1; var mod2 = curr[1]+getNext(curr,matrix).Item2; var mod3 = getNext(curr,matrix).Item3;
+            // Cannot combine into one line, need to assign mod variables otherwise curr gets updated as you go and becomes incorrect.
             curr.SetValue(mod1, 0); curr.SetValue(mod2, 1); curr.SetValue(mod3, 2);
         }
         Console.WriteLine(stepcounter / 2);
