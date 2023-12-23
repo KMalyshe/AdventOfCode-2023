@@ -1,4 +1,6 @@
+using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography.X509Certificates;
+using System.Xml.Schema;
 
 class Day10 {
     public static void solve10() {
@@ -44,63 +46,29 @@ class Day10 {
         while (matrix[curr[0]][curr[1]] != 'S')
         {
             stepcounter++;
-            Console.WriteLine("Currently at: " + curr[1] + ", " + curr[0]);
-            curr = getNext(curr, matrix);
+            var mod1 = curr[0]+getNext(curr,matrix).Item1; var mod2 = curr[1]+getNext(curr,matrix).Item2; var mod3 = getNext(curr,matrix).Item3;
+            curr.SetValue(mod1, 0); curr.SetValue(mod2, 1); curr.SetValue(mod3, 2);
         }
         Console.WriteLine(stepcounter / 2);
-        // Only checking three directions as one of them must necessarily match
-        // curr[2]: 1=coming from below, 2=coming from top, 3=coming from right, 4=coming from left
 
 
-        static int[] getNext(int[] curr, List<List<char>> matrix) // Disgusting method but I can't return an array directly in C# 11 :) (allegedly)
+        static Tuple<int, int, int> getNext(int[] curr, List<List<char>> matrix)
         {
             int[] tmp = new int[3];
-            switch(matrix[curr[0]][curr[1]])
+            var x = matrix[curr[0]][curr[1]];
+            if (((x == '|') && (curr[2] == 1)) || ((x == 'L') && (curr[2] != 2)) || ((x == 'J') && (curr[2] != 2))) 
             {
-                case '|':
-                    if (curr[2] == 1) {
-                        tmp[0] = curr[0]-1; tmp[1] = curr[1]; tmp[2] = 1;
-                        return tmp;
-                    }
-                    tmp[0] = curr[0]+1; tmp[1] = curr[1]; tmp[2] = 2;
-                    return tmp;
-                case '-':
-                    if (curr[2] == 3) {
-                        tmp[0] = curr[0]; tmp[1] = curr[1]-1; tmp[2] = 3;
-                        return tmp;
-                    }
-                    tmp[0] = curr[0]; tmp[1] = curr[1]+1; tmp[2] = 4;
-                    return tmp;
-                case 'L':
-                    if (curr[2] == 2) {
-                        tmp[0] = curr[0]; tmp[1] = curr[1]+1; tmp[2] = 4;
-                        return tmp;
-                    }
-                    tmp[0] = curr[0]-1; tmp[1] = curr[1]; tmp[2] = 1;
-                    return tmp;
-                case 'J':
-                    if (curr[2] == 2) {
-                        tmp[0] = curr[0]; tmp[1] = curr[1]-1; tmp[2] = 3;
-                        return tmp;
-                    }
-                    tmp[0] = curr[0]-1; tmp[1] = curr[1]; tmp[2] = 1;
-                    return tmp;
-                case '7':
-                    if (curr[2] == 1) {
-                        tmp[0] = curr[0]; tmp[1] = curr[1]-1; tmp[2] = 3;
-                        return tmp;
-                    }
-                    tmp[0] = curr[0]+1; tmp[1] = curr[1]; tmp[2] = 2;
-                    return tmp;
-                case 'F':
-                    if (curr[2] == 1) {
-                        tmp[0] = curr[0]; tmp[1] = curr[1]+1; tmp[2] = 4;
-                        return tmp;
-                    }
-                    tmp[0] = curr[0]+1; tmp[1] = curr[1]; tmp[2] = 2;
-                    return tmp;
+                return (-1, 0, 1).ToTuple();
             }
-            return tmp;
+            else if (((x == '|') && (curr[2] != 1)) || ((x == '7') && (curr[2] != 1)) || ((x == 'F') && (curr[2] != 1)))
+            {
+                return (1, 0, 2).ToTuple();
+            }
+            else if (((x == '-') && (curr[2] == 3)) || ((x == 'J') && (curr[2] == 2)) || ((x == '7') && (curr[2] == 1)))
+            {
+                return (0, -1, 3).ToTuple();
+            }
+            return (0, 1, 4).ToTuple();
         }
         
     }
