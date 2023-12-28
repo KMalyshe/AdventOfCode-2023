@@ -24,22 +24,28 @@ class Day10 {
         }
         int[] curr = new int[3];
         // Cursed solution, please help; Check where to start
-        if ((matrix[Sy-1][Sx] == '|') || (matrix[Sy-1][Sx] == '7') || (matrix[Sy-1][Sx] == 'F')) // Check top
+        if (((matrix[Sy-1][Sx] == '|') || (matrix[Sy-1][Sx] == '7') || (matrix[Sy-1][Sx] == 'F')) && (Sy != 0)) // Check top
         {
             curr[0] = Sy-1;
             curr[1] = Sx;
             curr[2] = 1;
         }
-        else if ((matrix[Sy+1][Sx] == '|') || (matrix[Sy+1][Sx] == 'L') || (matrix[Sy+1][Sx] == 'J')) // Check below
+        else if (((matrix[Sy+1][Sx] == '|') || (matrix[Sy+1][Sx] == 'L') || (matrix[Sy+1][Sx] == 'J')) && (Sy != matrix.Count-1)) // Check below
         {
             curr[0] = Sy+1;
             curr[1] = Sx;
             curr[2] = 2;
         }
-        else if ((matrix[Sy][Sx-1] == '-') || (matrix[Sy][Sx-1] == 'L') || (matrix[Sy][Sx-1] == 'F')) // Check left
+        else if (((matrix[Sy][Sx-1] == '-') || (matrix[Sy][Sx-1] == 'L') || (matrix[Sy][Sx-1] == 'F')) && (Sx != 0)) // Check left
         {
             curr[0] = Sy;
             curr[1] = Sx-1;
+            curr[2] = 3;
+        }
+        else if (((matrix[Sy][Sx+1] == '-') || (matrix[Sy][Sx+1] == 'L') || (matrix[Sy][Sx+1] == 'F')) && (Sx != matrix[Sy].Count-1)) // Check right
+        {
+            curr[0] = Sy;
+            curr[1] = Sx+1;
             curr[2] = 3;
         }
         var stepcounter = 1;
@@ -54,8 +60,10 @@ class Day10 {
             curr.SetValue(mod1, 0); curr.SetValue(mod2, 1); curr.SetValue(mod3, 2);
         }
         Console.WriteLine(stepcounter / 2);
-        polygonarea(vertices);
-        static void polygonarea(List<Tuple<int, int>> vertices) 
+        int area = polygonarea(vertices);
+        Console.WriteLine(area - (vertices.Count / 2) + 1);
+        // Polygon area attempt
+        static int polygonarea(List<Tuple<int, int>> vertices) 
         {
             var num = vertices.Count;
             int sum1 = 0;
@@ -71,7 +79,7 @@ class Day10 {
             sum2 += vertices[0].Item1*vertices[num-1].Item2;
 
             int area = Math.Abs(sum1-sum2) / 2;
-            Console.WriteLine(area);
+            return area;
         }
 
 
